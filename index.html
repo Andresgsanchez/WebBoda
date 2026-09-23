@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Boda</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="subtitle">¡Nos casamos!</p>
+            <h1>Inés & Jaime</h1>
+            <p class="date">11 de septiembre de 2027</p>
+
+            <a href="#confirmacion" class="button">
+                Confirmar asistencia
+            </a>
+        </div>
+    </header>
+
+
+    <main>
+
+        <section class="section">
+            <h2>Nos casamos</h2>
+
+            <p>
+                Estamos muy felices de compartir este día tan especial
+                con vosotros.
+            </p>
+
+            <p>
+                Esperamos poder celebrar nuestra boda junto a las personas
+                que más queremos.
+            </p>
+        </section>
+
+
+        <section class="section details">
+
+            <div class="detail">
+                <h3>💍 Ceremonia</h3>
+                <p>15 de mayo de 2027</p>
+                <p>17:00</p>
+                <p>Iglesia / lugar de la ceremonia</p>
+            </div>
+
+            <div class="detail">
+                <h3>🥂 Celebración</h3>
+                <p>19:00</p>
+                <p>Finca / restaurante</p>
+            </div>
+
+        </section>
+
+
+        <section id="confirmacion" class="section confirmation">
+
+            <h2>Confirmación de asistencia</h2>
+
+            <p>
+                Por favor, completa este formulario para indicarnos
+                si podrás acompañarnos.
+            </p>
+
+
+            <form id="wedding-form">
+
+                <div class="form-group">
+                    <label for="nombre">
+                        Nombre y apellidos
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        ¿Vas a asistir?
+                    </label>
+
+                    <div class="radio-group">
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="asistencia"
+                                value="Sí"
+                                required
+                            >
+                            Sí, asistiré
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="asistencia"
+                                value="No"
+                            >
+                            No podré asistir
+                        </label>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="acompanantes">
+                        Número de acompañantes
+                    </label>
+
+                    <input
+                        type="number"
+                        id="acompanantes"
+                        name="acompanantes"
+                        min="0"
+                        value="0"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="nombresAcompanantes">
+                        Nombres de los acompañantes
+                    </label>
+
+                    <textarea
+                        id="nombresAcompanantes"
+                        name="nombresAcompanantes"
+                        placeholder="Escribe sus nombres"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="alimentacion">
+                        Alergias o preferencias alimentarias
+                    </label>
+
+                    <textarea
+                        id="alimentacion"
+                        name="alimentacion"
+                        placeholder="Por ejemplo: vegetariano, sin gluten..."
+                    ></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="comentarios">
+                        Comentarios
+                    </label>
+
+                    <textarea
+                        id="comentarios"
+                        name="comentarios"
+                        placeholder="Cualquier cosa que quieras comunicarnos"
+                    ></textarea>
+                </div>
+
+
+                <button type="submit" class="button">
+                    Enviar confirmación
+                </button>
+
+                <p id="mensaje"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Inés & Jaime · 2027</p>
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
