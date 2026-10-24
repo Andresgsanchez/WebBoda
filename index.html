@@ -61,15 +61,17 @@
                 <!-- Contenedor que se oculta si no asiste -->
                 <div id="detalles-asistencia" style="display: none;">
                     
-                    <div class="form-group">
+                    <!-- PREGUNTA DE ACOMPAÑANTE -->
+                    <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <label>¿Vas a responder también en nombre de tu pareja o acompañante?</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="responde_por_dos" value="Sí" onchange="toggleAcompanantes('si')"> Sí, respondo por los dos</label>
-                            <label><input type="radio" name="responde_por_dos" value="No" onchange="toggleAcompanantes('no')" checked> No, mi acompañante rellenará su propio formulario</label>
+                            <label><input type="radio" name="responde_por_dos" value="Sí" onchange="toggleAcompanantes('si')" checked> Sí, respondo por los dos</label>
+                            <label><input type="radio" name="responde_por_dos" value="No" onchange="toggleAcompanantes('no')"> No, mi acompañante rellenará su propio formulario</label>
                         </div>
                     </div>
 
-                    <div id="bloque-acompanantes" style="display: none;">
+                    <!-- ✅ Este bloque ahora es visible por defecto porque la opción "Sí" está marcada -->
+                    <div id="bloque-acompanantes">
                         <div class="form-group">
                             <label for="nombresAcompanantes">Nombre completo del acompañante</label>
                             <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos">
@@ -90,14 +92,25 @@
                         <div class="form-group">
                             <label>¿Qué noches os alojaréis? (Selección múltiple)</label>
                             <div class="radio-group">
-                                <label><input type="checkbox" name="nochesHotel" value="Viernes"> Noche del Viernes</label>
-                                <label><input type="checkbox" name="nochesHotel" value="Sábado"> Noche del Sábado (Día de la boda)</label>
-                                <label><input type="checkbox" name="nochesHotel" value="Domingo"> Noche del Domingo</label>
+                                <label><input type="checkbox" name="nochesHotel[]" value="Viernes"> Noche del Viernes</label>
+                                <label><input type="checkbox" name="nochesHotel[]" value="Sábado"> Noche del Sábado (Día de la boda)</label>
+                                <label><input type="checkbox" name="nochesHotel[]" value="Domingo"> Noche del Domingo</label>
                             </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="comparteHabitacion">¿Con quién vas a compartir habitación? (Indica nombre y apellidos)</label>
-                            <input type="text" id="comparteHabitacion" name="comparteHabitacion">
+                            <label>¿Vas solo o acompañado?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="soloAcompanado" value="Solo" onchange="toggleCompaneroHotel('solo')" checked> Voy solo/a</label>
+                                <label><input type="radio" name="soloAcompanado" value="Acompañado" onchange="toggleCompaneroHotel('acompañado')"> Voy acompañado/a</label>
+                            </div>
+                        </div>
+
+                        <div id="bloque-companero-hotel" style="display: none;">
+                            <div class="form-group">
+                                <label for="nombreCompaneroHotel">Nombre del acompañante (si compartes habitación)</label>
+                                <input type="text" id="nombreCompaneroHotel" name="nombreCompaneroHotel">
+                            </div>
                         </div>
                     </div>
 
@@ -126,14 +139,11 @@
                         </div>
                     </div>
 
-                    <!-- 4. MENÚ -->
+                    <!-- 4. MENÚ (Solo alergias) -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
-                        <h3>🍽️ Menú y Restricciones</h3>
+                        <h3>🍽️ Restricciones Alimentarias</h3>
                         <label for="alergias">¿Tienes alguna alergia o intolerancia alimentaria importante?</label>
                         <textarea id="alergias" name="alergias" placeholder="Celíacos, lactosa, frutos secos, etc."></textarea>
-                        
-                        <label for="noLeGusta" style="margin-top: 15px;">¿Hay algún alimento que no os guste o no podáis comer por otros motivos?</label>
-                        <textarea id="noLeGusta" name="noLeGusta" placeholder="Pensado para adaptar el plato principal (ej. no me gusta el pescado)"></textarea>
                     </div>
 
                     <!-- 5. NIÑOS -->
@@ -199,6 +209,9 @@
         }
         function toggleHotel(val) {
             document.getElementById('bloque-hotel').style.display = val === 'si' ? 'block' : 'none';
+        }
+        function toggleCompaneroHotel(val) {
+            document.getElementById('bloque-companero-hotel').style.display = val === 'acompañado' ? 'block' : 'none';
         }
         function toggleBus(val) {
             document.getElementById('bloque-bus').style.display = val === 'si' ? 'block' : 'none';
