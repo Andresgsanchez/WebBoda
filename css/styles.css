@@ -1,6 +1,8 @@
 /* =========================
    GENERAL
 ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -29,12 +31,14 @@ h1, h2, h3 {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* ✅ CAMBIO AQUÍ: Cambiamos center por flex-end para que el texto baje */
+    align-items: flex-end; 
     text-align: center;
-    padding: 30px;
+    /* Añadimos un padding inferior para que no se pegue al borde de abajo */
+    padding: 30px 30px 120px 30px; 
     background:
         linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-        url("../img/boda.jpg");
+        url("../img/boda.jpeg");
     background-size: cover;
     background-position: center;
     color: white;
@@ -42,20 +46,32 @@ h1, h2, h3 {
 
 .hero-content {
     max-width: 800px;
+    /* Opcional: Si quieres bajarlo aún más, añade un margin-top aquí */
+    /* margin-top: 200px; */
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-family: "Bodoni Moda", serif; /* Le queda bien también aquí */
+    font-size: 1.5rem;
     margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
+/* ✅ Título principal con la tipografía y estilos unificados */
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
-    margin-bottom: 15px;
+    font-family: "Bodoni Moda", serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: clamp(2.5rem, 7vw, 5.5rem); /* Ligeramente ajustado para que quepa bien */
+    margin-bottom: 20px;
 }
 
+/* ✅ Fecha en mayúsculas y con la nueva tipografía */
 .date {
-    font-size: 1.4rem;
+    font-family: "Bodoni Moda", serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-bottom: 40px;
 }
 
@@ -143,7 +159,6 @@ form {
     font-weight: bold;
 }
 
-/* Estilo específico para los h3 dentro del formulario */
 .form-group h3 {
     font-size: 1.4rem;
     margin-bottom: 15px;
@@ -208,6 +223,7 @@ footer {
 @media (max-width: 600px) {
     .hero {
         min-height: 90vh;
+        padding-bottom: 80px; /* Menos espacio abajo en móviles */
     }
     .section {
         padding: 60px 0;
@@ -221,5 +237,28 @@ footer {
     .radio-group {
         flex-direction: column;
         gap: 10px;
+    }
+}
+
+/* =========================
+   MAPA
+========================= */
+.location-section {
+    padding-bottom: 40px; /* Un poco menos de espacio para que quede pegado al formulario */
+}
+
+.map-container {
+    width: 100%;
+    max-width: 800px; /* Para que no se haga gigante en pantallas grandes */
+    margin: 0 auto;
+    border-radius: 12px; /* Bordes redondeados */
+    overflow: hidden; /* Para que el iframe respete el redondeo */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra bonita */
+}
+
+/* Para que el mapa sea más bajito en móviles */
+@media (max-width: 600px) {
+    .map-container iframe {
+        height: 300px !important;
     }
 }

@@ -11,8 +11,8 @@
     <header class="hero">
         <div class="hero-content">
             <p class="subtitle">¡Nos casamos!</p>
-            <h1>Inés & Jaime</h1>
-            <p class="date">11 de septiembre de 2027</p>
+            <h1>INÉS ❤ JAIME</h1>
+            <p class="date">SÁBADO, 11 DE SEPTIEMBRE DE 2027</p>
             <a href="#confirmacion" class="button">Confirmar asistencia</a>
         </div>
     </header>
@@ -24,17 +24,25 @@
             <p>Esperamos poder celebrar nuestra boda junto a las personas que más queremos.</p>
         </section>
 
-        <section class="section details">
-            <div class="detail">
-                <h3>💍 Ceremonia</h3>
-                <p>15 de mayo de 2027</p>
-                <p>17:00</p>
-                <p>Iglesia / lugar de la ceremonia</p>
-            </div>
-            <div class="detail">
-                <h3>🥂 Celebración</h3>
-                <p>19:00</p>
-                <p>Finca / restaurante</p>
+        <!-- NUEVA SECCIÓN DE LUGAR CON MAPA -->
+        <section class="section location-section">
+            <h2>Lugar</h2>
+            <p>La ceremonia y la celebración tendrán lugar en:</p>
+            <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
+                La Antigua Harinera de Caspe<br>
+            </p>
+            
+            <!-- Mapa de Google Maps interactivo -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14271.721488134532!2d-0.011936225692788481!3d41.237897142945485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5f545525953fe9%3A0xc5680be3998417a6!2sAntigua%20Harinera%20de%20Caspe!5e0!3m2!1ses!2ses!4v1792864920956!5m2!1ses!2ses" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </section>
 
@@ -70,7 +78,6 @@
                         </div>
                     </div>
 
-                    <!-- ✅ Este bloque ahora es visible por defecto porque la opción "Sí" está marcada -->
                     <div id="bloque-acompanantes">
                         <div class="form-group">
                             <label for="nombresAcompanantes">Nombre completo del acompañante</label>
@@ -168,15 +175,28 @@
                         <div class="form-group">
                             <label>¿Se quedarán al banquete?</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="ninosBanquete" value="Sí" checked> Sí</label>
-                                <label><input type="radio" name="ninosBanquete" value="No"> No</label>
+                                <label><input type="radio" name="ninosBanquete" value="Sí" checked onchange="toggleMesaNinos('si')"> Sí</label>
+                                <label><input type="radio" name="ninosBanquete" value="No" onchange="toggleMesaNinos('no')"> No</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>¿Dónde preferís que se sienten los niños durante el banquete?</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="mesaNinos" value="Mesa con adultos" checked> En nuestra mesa (con adultos)</label>
-                                <label><input type="radio" name="mesaNinos" value="Mesa infantil"> En mesa especial de niños con cuidador</label>
+                        
+                        <div id="bloque-mesa-ninos">
+                            <div class="form-group">
+                                <label>¿Dónde preferís que se sienten los niños durante el banquete?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="mesaNinos" value="Mesa con adultos" checked> En nuestra mesa (con adultos)</label>
+                                    
+                                    <label>
+                                        <input type="radio" name="mesaNinos" value="Mesa infantil"> 
+                                        <span style="display: flex; flex-direction: column;">
+                                            En mesa especial de niños con cuidador
+                                            <small style="color: #666; font-weight: normal; margin-top: 4px;">
+                                                (Sujeto a un número mínimo de niños)
+                                            </small>
+                                        </span>
+                                    </label>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -188,11 +208,23 @@
                     <textarea id="comentarios" name="comentarios" placeholder="Cualquier cosa que quieras comunicarnos"></textarea>
                 </div>
 
+                <!-- 6. CANCIÓN FAVORITA -->
+                <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                    <h3>🎵 Música</h3>
+                    <label for="cancionFavorita">¿Cuál es tu canción favorita? (La pondremos en la fiesta)</label>
+                    <input type="text" id="cancionFavorita" name="cancionFavorita" placeholder="Artista - Título de la canción">
+                </div>
+
                 <button type="submit" class="button">Enviar confirmación</button>
                 <p id="mensaje" style="text-align: center; margin-top: 15px; font-weight: bold; color: #2e7d32;"></p>
             </form>
         </section>
     </main>
+
+    <!-- IMAGEN INFERIOR -->
+    <div class="imagen-inferior">
+        <img src="img/bodaAbajo.jpeg" alt="Inés y Jaime" style="width: 100%; display: block;">
+    </div>
 
     <footer>
         <p>Inés & Jaime · 2027</p>
@@ -218,6 +250,9 @@
         }
         function toggleNinos(val) {
             document.getElementById('bloque-ninos').style.display = val === 'si' ? 'block' : 'none';
+        }
+        function toggleMesaNinos(val) {
+            document.getElementById('bloque-mesa-ninos').style.display = val === 'si' ? 'block' : 'none';
         }
     </script>
     <script src="js/script.js"></script>

@@ -25,6 +25,10 @@ formulario.addEventListener("submit", function (event) {
     // Los unimos en un solo string separado por comas y lo añadimos al FormData
     formData.append("nochesHotel", nochesSeleccionadas.join(", "));
 
+    // --- NUEVO: Aseguramos que la canción favorita se envía ---
+    const cancion = document.getElementById("cancionFavorita").value;
+    formData.set("cancionFavorita", cancion);
+
     // Convertimos a URLSearchParams para enviar a Google
     const urlEncodedData = new URLSearchParams(formData).toString();
 
