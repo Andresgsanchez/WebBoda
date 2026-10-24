@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Boda</title>
-
+    <title>Boda - Inés & Jaime</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
     <header class="hero">
@@ -16,178 +13,200 @@
             <p class="subtitle">¡Nos casamos!</p>
             <h1>Inés & Jaime</h1>
             <p class="date">11 de septiembre de 2027</p>
-
-            <a href="#confirmacion" class="button">
-                Confirmar asistencia
-            </a>
+            <a href="#confirmacion" class="button">Confirmar asistencia</a>
         </div>
     </header>
 
-
     <main>
-
         <section class="section">
             <h2>Nos casamos</h2>
-
-            <p>
-                Estamos muy felices de compartir este día tan especial
-                con vosotros.
-            </p>
-
-            <p>
-                Esperamos poder celebrar nuestra boda junto a las personas
-                que más queremos.
-            </p>
+            <p>Estamos muy felices de compartir este día tan especial con vosotros.</p>
+            <p>Esperamos poder celebrar nuestra boda junto a las personas que más queremos.</p>
         </section>
 
-
         <section class="section details">
-
             <div class="detail">
                 <h3>💍 Ceremonia</h3>
                 <p>15 de mayo de 2027</p>
                 <p>17:00</p>
                 <p>Iglesia / lugar de la ceremonia</p>
             </div>
-
             <div class="detail">
                 <h3>🥂 Celebración</h3>
                 <p>19:00</p>
                 <p>Finca / restaurante</p>
             </div>
-
         </section>
 
-
         <section id="confirmacion" class="section confirmation">
-
             <h2>Confirmación de asistencia</h2>
-
-            <p>
-                Por favor, completa este formulario para indicarnos
-                si podrás acompañarnos.
-            </p>
-
+            <p>Por favor, completa este formulario antes de finales de noviembre.</p>
 
             <form id="wedding-form">
-
+                
+                <!-- 1. DATOS BÁSICOS -->
                 <div class="form-group">
-                    <label for="nombre">
-                        Nombre y apellidos
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        required
-                    >
+                    <label for="nombre">Nombre completo del invitado principal *</label>
+                    <input type="text" id="nombre" name="nombre" required>
                 </div>
 
-
                 <div class="form-group">
-                    <label>
-                        ¿Vas a asistir?
-                    </label>
-
+                    <label>¿Vas a asistir? *</label>
                     <div class="radio-group">
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="asistencia"
-                                value="Sí"
-                                required
-                            >
-                            Sí, asistiré
-                        </label>
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="asistencia"
-                                value="No"
-                            >
-                            No podré asistir
-                        </label>
-
+                        <label><input type="radio" name="asistencia" value="Sí" required onchange="toggleAsistencia()"> Sí, asistiré</label>
+                        <label><input type="radio" name="asistencia" value="No" onchange="toggleAsistencia()"> No podré asistir</label>
                     </div>
                 </div>
 
+                <!-- Contenedor que se oculta si no asiste -->
+                <div id="detalles-asistencia" style="display: none;">
+                    
+                    <div class="form-group">
+                        <label>¿Vas a responder también en nombre de tu pareja o acompañante?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="responde_por_dos" value="Sí" onchange="toggleAcompanantes('si')"> Sí, respondo por los dos</label>
+                            <label><input type="radio" name="responde_por_dos" value="No" onchange="toggleAcompanantes('no')" checked> No, mi acompañante rellenará su propio formulario</label>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="acompanantes">
-                        Número de acompañantes
-                    </label>
+                    <div id="bloque-acompanantes" style="display: none;">
+                        <div class="form-group">
+                            <label for="nombresAcompanantes">Nombre completo del acompañante</label>
+                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos">
+                        </div>
+                    </div>
 
-                    <input
-                        type="number"
-                        id="acompanantes"
-                        name="acompanantes"
-                        min="0"
-                        value="0"
-                    >
+                    <!-- 2. ALOJAMIENTO -->
+                    <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                        <h3>🏨 Alojamiento</h3>
+                        <label>¿Necesitas habitación de hotel?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="necesitaHotel" value="Sí" onchange="toggleHotel('si')"> Sí</label>
+                            <label><input type="radio" name="necesitaHotel" value="No" onchange="toggleHotel('no')" checked> No</label>
+                        </div>
+                    </div>
+
+                    <div id="bloque-hotel" style="display: none;">
+                        <div class="form-group">
+                            <label>¿Qué noches os alojaréis? (Selección múltiple)</label>
+                            <div class="radio-group">
+                                <label><input type="checkbox" name="nochesHotel" value="Viernes"> Noche del Viernes</label>
+                                <label><input type="checkbox" name="nochesHotel" value="Sábado"> Noche del Sábado (Día de la boda)</label>
+                                <label><input type="checkbox" name="nochesHotel" value="Domingo"> Noche del Domingo</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comparteHabitacion">¿Con quién vas a compartir habitación? (Indica nombre y apellidos)</label>
+                            <input type="text" id="comparteHabitacion" name="comparteHabitacion">
+                        </div>
+                    </div>
+
+                    <!-- 3. TRANSPORTE -->
+                    <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                        <h3>🚌 Transporte</h3>
+                        <label>¿Vas a utilizar el servicio de autobús para bajar a la finca?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="usaAutobus" value="Sí" onchange="toggleBus('si')"> Sí</label>
+                            <label><input type="radio" name="usaAutobus" value="No" onchange="toggleBus('no')" checked> No</label>
+                        </div>
+                    </div>
+
+                    <div id="bloque-bus" style="display: none;">
+                        <div class="form-group">
+                            <label>¿Qué trayectos necesitas?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="trayectoBus" value="Solo Ida"> Solo Ida (Hacia la finca)</label>
+                                <label><input type="radio" name="trayectoBus" value="Solo Vuelta"> Solo Vuelta (Desde la finca)</label>
+                                <label><input type="radio" name="trayectoBus" value="Ida y Vuelta" checked> Ida y Vuelta</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="plazasBus">Número de plazas necesarias (ej. "1 plaza" o "2 plazas")</label>
+                            <input type="number" id="plazasBus" name="plazasBus" min="1" value="1">
+                        </div>
+                    </div>
+
+                    <!-- 4. MENÚ -->
+                    <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                        <h3>🍽️ Menú y Restricciones</h3>
+                        <label for="alergias">¿Tienes alguna alergia o intolerancia alimentaria importante?</label>
+                        <textarea id="alergias" name="alergias" placeholder="Celíacos, lactosa, frutos secos, etc."></textarea>
+                        
+                        <label for="noLeGusta" style="margin-top: 15px;">¿Hay algún alimento que no os guste o no podáis comer por otros motivos?</label>
+                        <textarea id="noLeGusta" name="noLeGusta" placeholder="Pensado para adaptar el plato principal (ej. no me gusta el pescado)"></textarea>
+                    </div>
+
+                    <!-- 5. NIÑOS -->
+                    <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                        <h3>👶 Asistencia de Niños</h3>
+                        <label>¿Os acompañarán niños a la boda?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="vienenNinos" value="Sí" onchange="toggleNinos('si')"> Sí</label>
+                            <label><input type="radio" name="vienenNinos" value="No" onchange="toggleNinos('no')" checked> No</label>
+                        </div>
+                    </div>
+
+                    <div id="bloque-ninos" style="display: none;">
+                        <div class="form-group">
+                            <label for="cuantosNinos">¿Cuántos niños os acompañan?</label>
+                            <input type="number" id="cuantosNinos" name="cuantosNinos" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="edadesNinos">Edad de cada uno de los niños (separados por comas)</label>
+                            <input type="text" id="edadesNinos" name="edadesNinos" placeholder="Ej: 3, 5, 8">
+                        </div>
+                        <div class="form-group">
+                            <label>¿Se quedarán al banquete?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="ninosBanquete" value="Sí" checked> Sí</label>
+                                <label><input type="radio" name="ninosBanquete" value="No"> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>¿Dónde preferís que se sienten los niños durante el banquete?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="mesaNinos" value="Mesa con adultos" checked> En nuestra mesa (con adultos)</label>
+                                <label><input type="radio" name="mesaNinos" value="Mesa infantil"> En mesa especial de niños con cuidador</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- Fin detalles-asistencia -->
+
+                <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                    <label for="comentarios">Comentarios adicionales</label>
+                    <textarea id="comentarios" name="comentarios" placeholder="Cualquier cosa que quieras comunicarnos"></textarea>
                 </div>
 
-
-                <div class="form-group">
-                    <label for="nombresAcompanantes">
-                        Nombres de los acompañantes
-                    </label>
-
-                    <textarea
-                        id="nombresAcompanantes"
-                        name="nombresAcompanantes"
-                        placeholder="Escribe sus nombres"
-                    ></textarea>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="alimentacion">
-                        Alergias o preferencias alimentarias
-                    </label>
-
-                    <textarea
-                        id="alimentacion"
-                        name="alimentacion"
-                        placeholder="Por ejemplo: vegetariano, sin gluten..."
-                    ></textarea>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="comentarios">
-                        Comentarios
-                    </label>
-
-                    <textarea
-                        id="comentarios"
-                        name="comentarios"
-                        placeholder="Cualquier cosa que quieras comunicarnos"
-                    ></textarea>
-                </div>
-
-
-                <button type="submit" class="button">
-                    Enviar confirmación
-                </button>
-
-                <p id="mensaje"></p>
-
+                <button type="submit" class="button">Enviar confirmación</button>
+                <p id="mensaje" style="text-align: center; margin-top: 15px; font-weight: bold; color: #2e7d32;"></p>
             </form>
-
         </section>
-
     </main>
-
 
     <footer>
         <p>Inés & Jaime · 2027</p>
     </footer>
 
-
+    <!-- Lógica de mostrar/ocultar campos -->
+    <script>
+        function toggleAsistencia() {
+            const asiste = document.querySelector('input[name="asistencia"]:checked').value === 'Sí';
+            document.getElementById('detalles-asistencia').style.display = asiste ? 'block' : 'none';
+        }
+        function toggleAcompanantes(val) {
+            document.getElementById('bloque-acompanantes').style.display = val === 'si' ? 'block' : 'none';
+        }
+        function toggleHotel(val) {
+            document.getElementById('bloque-hotel').style.display = val === 'si' ? 'block' : 'none';
+        }
+        function toggleBus(val) {
+            document.getElementById('bloque-bus').style.display = val === 'si' ? 'block' : 'none';
+        }
+        function toggleNinos(val) {
+            document.getElementById('bloque-ninos').style.display = val === 'si' ? 'block' : 'none';
+        }
+    </script>
     <script src="js/script.js"></script>
-
 </body>
 </html>

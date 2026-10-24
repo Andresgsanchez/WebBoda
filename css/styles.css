@@ -1,7 +1,6 @@
 /* =========================
    GENERAL
 ========================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,38 +18,25 @@ body {
     line-height: 1.6;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     font-weight: normal;
 }
-
 
 /* =========================
    HERO
 ========================= */
-
 .hero {
     min-height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     text-align: center;
-
     padding: 30px;
-
     background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.25)
-        ),
+        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
         url("../img/boda.jpg");
-
     background-size: cover;
     background-position: center;
-
     color: white;
 }
 
@@ -73,28 +59,19 @@ h3 {
     margin-bottom: 40px;
 }
 
-
 /* =========================
    BOTONES
 ========================= */
-
 .button {
     display: inline-block;
-
     padding: 14px 28px;
-
     border: none;
     border-radius: 6px;
-
     background-color: #ffffff;
     color: #333;
-
     text-decoration: none;
-
     font-size: 1rem;
-
     cursor: pointer;
-
     transition: transform 0.2s, opacity 0.2s;
 }
 
@@ -103,18 +80,13 @@ h3 {
     opacity: 0.9;
 }
 
-
 /* =========================
    SECCIONES
 ========================= */
-
 .section {
     width: min(900px, 90%);
-
     margin: 0 auto;
-
     padding: 80px 0;
-
     text-align: center;
 }
 
@@ -123,26 +95,19 @@ h3 {
     margin-bottom: 25px;
 }
 
-
 /* =========================
    DETALLES
 ========================= */
-
 .details {
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     gap: 30px;
 }
 
 .detail {
     padding: 30px;
-
     background-color: white;
-
     border-radius: 10px;
-
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -151,11 +116,9 @@ h3 {
     margin-bottom: 15px;
 }
 
-
 /* =========================
    FORMULARIO
 ========================= */
-
 .confirmation {
     text-align: left;
 }
@@ -167,7 +130,6 @@ h3 {
 
 form {
     max-width: 600px;
-
     margin: 40px auto 0;
 }
 
@@ -177,100 +139,87 @@ form {
 
 .form-group label {
     display: block;
-
     margin-bottom: 8px;
-
     font-weight: bold;
 }
 
-input,
+/* Estilo específico para los h3 dentro del formulario */
+.form-group h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
 textarea {
     width: 100%;
-
     padding: 12px;
-
     border: 1px solid #ccc;
     border-radius: 6px;
-
     font-family: inherit;
     font-size: 1rem;
+    background-color: #fff;
 }
 
 textarea {
     min-height: 100px;
-
     resize: vertical;
 }
 
 .radio-group {
     display: flex;
-
     gap: 20px;
-
     flex-wrap: wrap;
 }
 
 .radio-group label {
     font-weight: normal;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .radio-group input {
     width: auto;
-
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 form .button {
     background-color: #333;
     color: white;
+    width: 100%;
+    margin-top: 20px;
 }
-
 
 /* =========================
    FOOTER
 ========================= */
-
 footer {
     padding: 30px;
-
     text-align: center;
-
     background-color: #333;
-
     color: white;
 }
-
 
 /* =========================
    MÓVILES
 ========================= */
-
 @media (max-width: 600px) {
-
     .hero {
         min-height: 90vh;
     }
-
     .section {
         padding: 60px 0;
     }
-
     .section h2 {
         font-size: 2rem;
     }
-
     .details {
         grid-template-columns: 1fr;
     }
-
     .radio-group {
         flex-direction: column;
         gap: 10px;
     }
-
-    .button {
-        width: 100%;
-        text-align: center;
-    }
-    
 }
