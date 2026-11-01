@@ -18,6 +18,7 @@ body {
     color: #333;
     background-color: #faf9f6;
     line-height: 1.6;
+    overflow-x: hidden; 
 }
 
 h1, h2, h3 {
@@ -31,42 +32,37 @@ h1, h2, h3 {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    /* ✅ CAMBIO AQUÍ: Cambiamos center por flex-end para que el texto baje */
     align-items: flex-end; 
     text-align: center;
-    /* Añadimos un padding inferior para que no se pegue al borde de abajo */
     padding: 30px 30px 120px 30px; 
     background:
         linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
         url("../img/boda.jpeg");
     background-size: cover;
-    background-position: center;
+    background-position: 40% center; 
     color: white;
 }
 
 .hero-content {
     max-width: 800px;
-    /* Opcional: Si quieres bajarlo aún más, añade un margin-top aquí */
-    /* margin-top: 200px; */
 }
 
 .subtitle {
-    font-family: "Bodoni Moda", serif; /* Le queda bien también aquí */
+    font-family: "Bodoni Moda", serif;
     font-size: 1.5rem;
     margin-bottom: 10px;
     letter-spacing: 1px;
 }
 
-/* ✅ Título principal con la tipografía y estilos unificados */
+/* ✅ Único sitio donde se queda Bodoni Moda */
 .hero h1 {
     font-family: "Bodoni Moda", serif;
     font-weight: 500;
     letter-spacing: 2px;
-    font-size: clamp(2.5rem, 7vw, 5.5rem); /* Ligeramente ajustado para que quepa bien */
+    font-size: clamp(2.5rem, 7vw, 5.5rem); 
     margin-bottom: 20px;
 }
 
-/* ✅ Fecha en mayúsculas y con la nueva tipografía */
 .date {
     font-family: "Bodoni Moda", serif;
     font-size: 1.2rem;
@@ -86,14 +82,17 @@ h1, h2, h3 {
     background-color: #ffffff;
     color: #333;
     text-decoration: none;
+    /* ✅ Forzamos que hereden la fuente Georgia del body */
+    font-family: inherit; 
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s, opacity 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 .button:hover {
     transform: translateY(-2px);
-    opacity: 0.9;
+    background-color: #f0f0f0;
 }
 
 /* =========================
@@ -106,37 +105,68 @@ h1, h2, h3 {
     text-align: center;
 }
 
+/* ✅ Quitada la Bodoni Moda de aquí para que vuelvan a ser Georgia */
 .section h2 {
+    font-family: Georgia, serif; 
     font-size: 2.5rem;
     margin-bottom: 25px;
+    word-wrap: break-word; 
+    letter-spacing: 1px;
 }
 
 /* =========================
-   DETALLES
+   MAPA
 ========================= */
-.details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+.location-section {
+    padding-bottom: 40px; 
 }
 
-.detail {
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-}
-
-.detail h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+.map-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================
-   FORMULARIO
+   SECCIÓN TU LOOK (OUTFITKEY)
+========================= */
+.outfit-section {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    margin-bottom: 60px;
+    border: 1px solid #eee;
+}
+
+.outfit-button {
+    background-color: #333; 
+    color: white;
+    width: 100%;
+    max-width: 300px;
+    font-family: inherit; /* Aseguramos la fuente */
+}
+
+.outfit-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   FORMULARIO ELEGANTE
 ========================= */
 .confirmation {
     text-align: left;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 50px 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    margin-bottom: 80px;
+    border: 1px solid #eee;
 }
 
 .confirmation h2,
@@ -144,47 +174,69 @@ h1, h2, h3 {
     text-align: center;
 }
 
+.confirmation > p {
+    margin-bottom: 40px;
+    color: #666;
+}
+
 form {
-    max-width: 600px;
-    margin: 40px auto 0;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
 }
 
+/* ✅ Títulos de sección del formulario con Georgia y estilo elegante */
 .form-group h3 {
+    font-family: Georgia, serif;
     font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: #555;
+    margin-bottom: 20px;
+    color: #222;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    letter-spacing: 0.5px;
 }
 
 input[type="text"],
 input[type="number"],
 textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 14px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
     font-family: inherit;
     font-size: 1rem;
+    background-color: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #999;
     background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
 }
 
 textarea {
-    min-height: 100px;
+    min-height: 120px;
     resize: vertical;
 }
 
 .radio-group {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
@@ -193,18 +245,45 @@ textarea {
     display: flex;
     align-items: center;
     cursor: pointer;
+    line-height: 1.4; 
+    background-color: #fafafa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.radio-group label:hover {
+    background-color: #f0f0f0;
+    border-color: #ddd;
+}
+
+.radio-group label:has(input:checked) {
+    background-color: #f0f0f0;
+    border-color: #333;
 }
 
 .radio-group input {
     width: auto;
-    margin-right: 8px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    accent-color: #333; 
 }
 
+/* ✅ Botón de enviar con la fuente heredada y el mismo estilo que los demás */
 form .button {
     background-color: #333;
     color: white;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
+    padding: 16px;
+    font-family: inherit; /* Esto soluciona que la letra sea distinta */
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+form .button:hover {
+    background-color: #555;
 }
 
 /* =========================
@@ -215,50 +294,61 @@ footer {
     text-align: center;
     background-color: #333;
     color: white;
+    font-family: Georgia, serif; /* Footer también en Georgia */
+    letter-spacing: 1px;
 }
 
 /* =========================
-   MÓVILES
+   RESPONSIVE (MÓVILES Y TABLETS)
 ========================= */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .hero {
         min-height: 90vh;
-        padding-bottom: 80px; /* Menos espacio abajo en móviles */
+        padding-bottom: 60px; 
+        background-position: center; 
     }
+
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 4rem); 
+    }
+
+    .date {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
     .section {
         padding: 60px 0;
+        width: 92%; 
     }
+
     .section h2 {
         font-size: 2rem;
     }
-    .details {
-        grid-template-columns: 1fr;
+
+    .confirmation {
+        padding: 30px 20px;
     }
+
+    .outfit-section {
+        padding: 30px 20px;
+    }
+
     .radio-group {
         flex-direction: column;
         gap: 10px;
     }
-}
 
-/* =========================
-   MAPA
-========================= */
-.location-section {
-    padding-bottom: 40px; /* Un poco menos de espacio para que quede pegado al formulario */
-}
+    .radio-group label {
+        width: 100%;
+    }
 
-.map-container {
-    width: 100%;
-    max-width: 800px; /* Para que no se haga gigante en pantallas grandes */
-    margin: 0 auto;
-    border-radius: 12px; /* Bordes redondeados */
-    overflow: hidden; /* Para que el iframe respete el redondeo */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra bonita */
-}
-
-/* Para que el mapa sea más bajito en móviles */
-@media (max-width: 600px) {
     .map-container iframe {
         height: 300px !important;
+    }
+
+    .imagen-inferior img {
+        width: 100%;
+        height: auto;
     }
 }
