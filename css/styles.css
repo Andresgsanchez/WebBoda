@@ -54,7 +54,6 @@ h1, h2, h3 {
     letter-spacing: 1px;
 }
 
-/* ✅ Único sitio donde se queda Bodoni Moda */
 .hero h1 {
     font-family: "Bodoni Moda", serif;
     font-weight: 500;
@@ -82,7 +81,6 @@ h1, h2, h3 {
     background-color: #ffffff;
     color: #333;
     text-decoration: none;
-    /* ✅ Forzamos que hereden la fuente Georgia del body */
     font-family: inherit; 
     font-size: 1rem;
     font-weight: bold;
@@ -105,7 +103,6 @@ h1, h2, h3 {
     text-align: center;
 }
 
-/* ✅ Quitada la Bodoni Moda de aquí para que vuelvan a ser Georgia */
 .section h2 {
     font-family: Georgia, serif; 
     font-size: 2.5rem;
@@ -148,7 +145,7 @@ h1, h2, h3 {
     color: white;
     width: 100%;
     max-width: 300px;
-    font-family: inherit; /* Aseguramos la fuente */
+    font-family: inherit;
 }
 
 .outfit-button:hover {
@@ -196,15 +193,15 @@ form {
     font-size: 0.95rem;
 }
 
-/* ✅ Títulos de sección del formulario con Georgia y estilo elegante */
+/* ✅ CAMBIO AQUÍ: Eliminada la línea de abajo (border-bottom) */
 .form-group h3 {
     font-family: Georgia, serif;
     font-size: 1.4rem;
     margin-bottom: 20px;
     color: #222;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
     letter-spacing: 0.5px;
+    /* padding-bottom: 10px; (también lo quitamos para que no quede espacio extra) */
+    /* border-bottom: 1px solid #eee; (esta es la línea que quitamos) */
 }
 
 input[type="text"],
@@ -270,14 +267,14 @@ textarea {
     accent-color: #333; 
 }
 
-/* ✅ Botón de enviar con la fuente heredada y el mismo estilo que los demás */
+/* ✅ Botón de enviar */
 form .button {
     background-color: #333;
     color: white;
     width: 100%;
     margin-top: 30px;
     padding: 16px;
-    font-family: inherit; /* Esto soluciona que la letra sea distinta */
+    font-family: inherit; 
     font-size: 1.1rem;
     letter-spacing: 1px;
 }
@@ -294,7 +291,7 @@ footer {
     text-align: center;
     background-color: #333;
     color: white;
-    font-family: Georgia, serif; /* Footer también en Georgia */
+    font-family: Georgia, serif; 
     letter-spacing: 1px;
 }
 
