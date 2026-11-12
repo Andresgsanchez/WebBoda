@@ -10,7 +10,7 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h1>INÉS ❤ JAIME</h1>
+            <h1>INÉS ❤️ JAIME</h1>
             <p class="date">SÁBADO, 11 DE SEPTIEMBRE DE 2027</p>
             <a href="#confirmacion" class="button">Confirmar asistencia</a>
         </div>
@@ -44,11 +44,12 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: TU LOOK (OUTFITKEY) -->
+        <!-- NUEVA SECCIÓN: VESTIMENTA Y TU LOOK (OUTFITKEY) -->
         <section class="section outfit-section">
-            <h2>TU LOOK</h2>
-            <p>¿Ya sabes qué te vas a poner? Para que la sorpresa del evento no sea coincidir con el mismo look, hemos creado este espacio privado.</p>
-            <p style="margin-bottom: 30px;">Registra tu outfit de forma anónima y te avisaremos si coincides con alguien.</p>
+            <h2>VESTIMENTA</h2>
+            <p>¡Venid como queráis! No tenemos código de vestimenta, lo importante es que disfrutéis con nosotros.</p>
+            <p>Pero sabemos que a algunos os preocupa coincidir con el mismo vestido o conjunto. Por eso, os dejamos esta herramienta para consultar y registrar vuestro look de forma privada y evitar coincidencias.</p>
+            <p style="margin-bottom: 30px;"><strong>¡Es totalmente opcional!</strong></p>
             
             <a href="https://outfitkey.com/in-s-jaime-fc951925" target="_blank" class="button outfit-button">
                 Descubrir y registrar mi look
@@ -58,7 +59,10 @@
         <!-- SECCIÓN DEL FORMULARIO -->
         <section id="confirmacion" class="section confirmation">
             <h2>CONFIRMACIÓN DE ASISTENCIA</h2>
-            <p>Por favor, completa este formulario antes de diciembre. Los campos con * son obligatorios.</p>
+            <p>Aunque todavía queda mucho para el gran día, necesitamos preparar algunas cosas con antelación, especialmente el alojamiento y el transporte.</p>
+            <p>Os agradeceríamos que rellenaseis este formulario antes del 1 de diciembre.</p>
+            <p>No hace falta que lo tengáis todo decidido. Contestad lo que ya sepáis y, si vuestros planes cambian, nos lo podéis comunicar sin problema.</p>
+            <p style="font-weight: bold; margin-bottom: 40px;">¡Más adelante recibiréis vuestra invitación con todos los detalles!</p>
 
             <form id="wedding-form">
                 
@@ -73,6 +77,7 @@
                     <div class="radio-group">
                         <label><input type="radio" name="asistencia" value="Sí" required onchange="toggleAsistencia()"> Sí, asistiré</label>
                         <label><input type="radio" name="asistencia" value="No" onchange="toggleAsistencia()"> No podré asistir</label>
+                        <label><input type="radio" name="asistencia" value="Todavía no lo sabemos" onchange="toggleAsistencia()"> Todavía no lo sabemos</label>
                     </div>
                 </div>
 
@@ -88,20 +93,23 @@
                         </div>
                     </div>
 
-                    <div id="bloque-acompanantes" style="display: none;">
+                    <!-- ✅ CAMPO SIEMPRE VISIBLE Y OBLIGATORIO -->
+                    <div id="bloque-acompanantes">
                         <div class="form-group">
                             <label for="nombresAcompanantes">Nombre completo del acompañante *</label>
-                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos">
+                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos" required>
                         </div>
                     </div>
 
                     <!-- 2. ALOJAMIENTO -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>🏨 Alojamiento</h3>
+                        <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Como en Caspe las opciones de alojamiento son limitadas, queremos ponéroslo fácil.<br><br>Nos encargaremos de gestionar las reservas para quienes necesitéis habitación. Cada uno abonará su propio alojamiento.<br><br>Por ahora, solo necesitamos saber vuestras preferencias para poder organizarnos con tiempo.</p>
                         <label>¿Necesitas habitación de hotel? *</label>
                         <div class="radio-group">
                             <label><input type="radio" name="necesitaHotel" value="Sí" required onchange="toggleHotel('si')"> Sí</label>
                             <label><input type="radio" name="necesitaHotel" value="No" onchange="toggleHotel('no')"> No</label>
+                            <label><input type="radio" name="necesitaHotel" value="Todavía no lo sabemos" onchange="toggleHotel('no_se')"> Todavía no lo sabemos</label>
                         </div>
                     </div>
 
@@ -109,7 +117,6 @@
                         <div class="form-group">
                             <label>¿Qué noches os alojaréis? (Selección múltiple) *</label>
                             <div class="radio-group" id="checkboxes-hotel">
-                                <!-- ✅ PONEMOS required EN EL PRIMER CHECKBOX PARA OBLIGAR A MARCAR AL MENOS UNO -->
                                 <label><input type="checkbox" name="nochesHotel[]" value="Viernes" required> Noche del Viernes</label>
                                 <label><input type="checkbox" name="nochesHotel[]" value="Sábado"> Noche del Sábado (Día de la boda)</label>
                                 <label><input type="checkbox" name="nochesHotel[]" value="Domingo"> Noche del Domingo</label>
@@ -136,10 +143,12 @@
                     <!-- 3. TRANSPORTE -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>🚌 Transporte</h3>
+                        <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Estamos organizando un servicio de autobús entre Caspe y la finca para que no tengáis que preocuparos por el desplazamiento.<br><br>Por ahora, solo necesitamos saber si tenéis intención de utilizarlo para calcular las plazas necesarias. ¡Más adelante os daremos todos los detalles!</p>
                         <label>¿Vas a utilizar el servicio de autobús para ir a la finca desde Caspe? *</label>
                         <div class="radio-group">
                             <label><input type="radio" name="usaAutobus" value="Sí" required onchange="toggleBus('si')"> Sí</label>
                             <label><input type="radio" name="usaAutobus" value="No" onchange="toggleBus('no')"> No</label>
+                            <label><input type="radio" name="usaAutobus" value="Todavía no lo sabemos" onchange="toggleBus('no_se')"> Todavía no lo sabemos</label>
                         </div>
                     </div>
 
@@ -154,32 +163,34 @@
                         </div>
                         <div class="form-group">
                             <label for="plazasBus">Número de plazas necesarias *</label>
-                            <!-- ✅ QUITADO EL value="1" PARA QUE SALGA VACÍO -->
                             <input type="number" id="plazasBus" name="plazasBus" min="1" placeholder="Ejemplo: 1">
                         </div>
                     </div>
 
                     <!-- 4. MENÚ -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
-                        <h3>🍽️ Restricciones Alimentarias</h3>
-                        <label for="alergias">¿Tienes alguna alergia o intolerancia alimentaria importante? (Si no tienes, escribe "Ninguna") *</label>
-                        <textarea id="alergias" name="alergias" placeholder="Celíacos, lactosa, frutos secos, etc." required></textarea>
+                        <h3>🍽️ Alergias e intolerancias</h3>
+                        <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Queremos que todos disfrutéis de la comida sin preocupaciones.</p>
+                        <label for="alergias">¿Tenéis alguna alergia, intolerancia o necesidad alimentaria especial? *</label>
+                        <p style="margin-bottom: 10px; font-size: 0.85rem; color: #777;">Indicad cuál y a quién afecta. Si no tenéis ninguna, escribid «Ninguna».<br>Ejemplo: Celiaquía, intolerancia a la lactosa, alergia a los frutos secos, menú vegetariano, etc.</p>
+                        <textarea id="alergias" name="alergias" placeholder="Escribe aquí..." required></textarea>
                     </div>
 
                     <!-- 5. NIÑOS -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>👶 Asistencia de Niños</h3>
+                        <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">¡Los más pequeños también son bienvenidos! Queremos saber cuántos vendrán para tenerlo todo preparado.</p>
                         <label>¿Os acompañarán niños a la boda? *</label>
                         <div class="radio-group">
                             <label><input type="radio" name="vienenNinos" value="Sí" required onchange="toggleNinos('si')"> Sí</label>
                             <label><input type="radio" name="vienenNinos" value="No" onchange="toggleNinos('no')"> No</label>
+                            <label><input type="radio" name="vienenNinos" value="Todavía no lo sabemos" onchange="toggleNinos('no_se')"> Todavía no lo sabemos</label>
                         </div>
                     </div>
 
                     <div id="bloque-ninos" style="display: none;">
                         <div class="form-group">
                             <label for="cuantosNinos">¿Cuántos niños os acompañan? *</label>
-                            <!-- ✅ QUITADO EL value="1" PARA QUE SALGA VACÍO -->
                             <input type="number" id="cuantosNinos" name="cuantosNinos" min="1" placeholder="Ejemplo: 2">
                         </div>
                         <div class="form-group">
@@ -191,6 +202,7 @@
                             <div class="radio-group">
                                 <label><input type="radio" name="ninosBanquete" value="Sí" onchange="toggleMesaNinos('si')"> Sí</label>
                                 <label><input type="radio" name="ninosBanquete" value="No" onchange="toggleMesaNinos('no')"> No</label>
+                                <label><input type="radio" name="ninosBanquete" value="Todavía no lo sabemos" onchange="toggleMesaNinos('no_se')"> Todavía no lo sabemos</label>
                             </div>
                         </div>
                         
@@ -223,8 +235,8 @@
                 <!-- 6. CANCIÓN FAVORITA -->
                 <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                     <h3>🎵 Música</h3>
-                    <label for="cancionFavorita">¿Qué canción no puede faltar? *</label>
-                    <input type="text" id="cancionFavorita" name="cancionFavorita" placeholder="Artista - Título de la canción" required>
+                    <label for="cancionFavorita">¿Qué canción no puede faltar? (opcional)</label>
+                    <input type="text" id="cancionFavorita" name="cancionFavorita" placeholder="Artista - Título de la canción">
                 </div>
 
                 <button type="submit" class="button">Enviar confirmación</button>
@@ -238,7 +250,7 @@
     </div>
 
     <footer>
-        <p>Inés ❤ Jaime · 2027</p>
+        <p>Inés ❤️ Jaime · 2027</p>
     </footer>
 
     <!-- Lógica de mostrar/ocultar y activar/desactivar required -->
@@ -253,10 +265,8 @@
             inputs.forEach(input => {
                 input.disabled = !mostrar;
                 
-                // Si es un checkbox, gestionamos el required de forma especial
                 if (input.type === 'checkbox') {
                     if (mostrar) {
-                        // Solo ponemos required al primer checkbox del grupo para que exija marcar al menos uno
                         if (input.name === 'nochesHotel[]' && input.value === 'Viernes') {
                             input.required = true;
                         }
@@ -270,16 +280,20 @@
         }
 
         function toggleAsistencia() {
-            const asiste = document.querySelector('input[name="asistencia"]:checked').value === 'Sí';
+            const seleccion = document.querySelector('input[name="asistencia"]:checked').value;
             const panel = document.getElementById('detalles-asistencia');
-            panel.style.display = asiste ? 'block' : 'none';
+            
+            const mostrarDetalles = (seleccion === 'Sí');
+            
+            panel.style.display = mostrarDetalles ? 'block' : 'none';
             
             const inputs = panel.querySelectorAll('input, textarea');
-            inputs.forEach(input => input.disabled = !asiste);
+            inputs.forEach(input => input.disabled = !mostrarDetalles);
         }
 
         function toggleAcompanantes(val) {
-            configurarBloque('bloque-acompanantes', val === 'si');
+            // Como el bloque es siempre visible, esta función solo se mantiene por si 
+            // en el futuro quieres añadir lógica extra, pero no oculta nada.
         }
 
         function toggleHotel(val) {
@@ -302,9 +316,8 @@
             configurarBloque('bloque-mesa-ninos', val === 'si');
         }
 
-        // Validación extra por si acaso para los checkboxes y los números
+        // Validación extra en el envío
         document.getElementById('wedding-form').addEventListener('submit', function(e) {
-            // Validar checkboxes de noches
             const hotelMarcado = document.querySelector('input[name="necesitaHotel"]:checked');
             if (hotelMarcado && hotelMarcado.value === 'Sí') {
                 const checkboxes = document.querySelectorAll('input[name="nochesHotel[]"]:checked');
@@ -312,13 +325,12 @@
                     e.preventDefault();
                     document.getElementById('error-noches').style.display = 'block';
                     document.getElementById('bloque-hotel').scrollIntoView({ behavior: 'smooth' });
-                    return; // Detiene la ejecución aquí
+                    return;
                 } else {
                     document.getElementById('error-noches').style.display = 'none';
                 }
             }
 
-            // Validar número de plazas de bus
             const busMarcado = document.querySelector('input[name="usaAutobus"]:checked');
             if (busMarcado && busMarcado.value === 'Sí') {
                 const plazas = document.getElementById('plazasBus').value;
@@ -330,7 +342,6 @@
                 }
             }
 
-            // Validar cuántos niños
             const ninosMarcado = document.querySelector('input[name="vienenNinos"]:checked');
             if (ninosMarcado && ninosMarcado.value === 'Sí') {
                 const cuantos = document.getElementById('cuantosNinos').value;

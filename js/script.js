@@ -15,14 +15,9 @@ formulario.addEventListener("submit", function (event) {
     const formData = new FormData(formulario);
     
     // --- TRATAMIENTO DE CHECKBOXES MÚLTIPLES ---
-    // Eliminamos los checkboxes sueltos del FormData
     formData.delete("nochesHotel[]");
-    
-    // Recogemos todos los checkboxes marcados
     const checkboxesMarcados = document.querySelectorAll('input[name="nochesHotel[]"]:checked');
     const nochesSeleccionadas = Array.from(checkboxesMarcados).map(cb => cb.value);
-    
-    // Los unimos en un solo string separado por comas y lo añadimos al FormData
     formData.append("nochesHotel", nochesSeleccionadas.join(", "));
 
     // --- NUEVO: Aseguramos que la canción favorita se envía ---
@@ -56,10 +51,12 @@ formulario.addEventListener("submit", function (event) {
         
         // Ocultar todos los bloques condicionales
         document.getElementById('detalles-asistencia').style.display = 'none';
+        document.getElementById('bloque-acompanantes').style.display = 'none';
         document.getElementById('bloque-hotel').style.display = 'none';
         document.getElementById('bloque-companero-hotel').style.display = 'none';
         document.getElementById('bloque-bus').style.display = 'none';
         document.getElementById('bloque-ninos').style.display = 'none';
+        document.getElementById('bloque-mesa-ninos').style.display = 'none';
         
         boton.disabled = false;
     }
