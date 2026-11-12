@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda - Inés & Jaime</title>
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- ✅ SCRIPT PARA FORZAR EL INICIO AL RECARGAR -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+    </script>
 </head>
 <body>
 
@@ -24,7 +34,7 @@
         </section>
 
         <!-- SECCIÓN DEL MAPA -->
-        <section class="section location-section">
+        <section id="lugar" class="section location-section">
             <h2>LUGAR</h2>
             <p>La ceremonia y la celebración tendrán lugar en:</p>
             <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
@@ -45,7 +55,7 @@
         </section>
 
         <!-- NUEVA SECCIÓN: VESTIMENTA Y TU LOOK (OUTFITKEY) -->
-        <section class="section outfit-section">
+        <section id="vestimenta" class="section outfit-section">
             <h2>VESTIMENTA</h2>
             <p>¡Venid como queráis! No tenemos código de vestimenta, lo importante es que disfrutéis con nosotros.</p>
             <p>Pero sabemos que a algunos os preocupa coincidir con el mismo vestido o conjunto. Por eso, os dejamos esta herramienta para consultar y registrar vuestro look de forma privada y evitar coincidencias.</p>
@@ -84,20 +94,28 @@
                 <!-- Contenedor que se oculta si no asiste -->
                 <div id="detalles-asistencia" style="display: none;">
                     
-                    <!-- PREGUNTA DE ACOMPAÑANTE -->
+                    <!-- NUEVA PREGUNTA: ¿Vas solo o acompañado? -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
-                        <label>¿Vas a responder también en nombre de tu pareja o acompañante? *</label>
+                        <label>¿Vas solo/a o acompañado/a? *</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="responde_por_dos" value="Sí" required onchange="toggleAcompanantes('si')"> Sí, respondo por los dos</label>
-                            <label><input type="radio" name="responde_por_dos" value="No" onchange="toggleAcompanantes('no')"> No, mi acompañante rellenará su propio formulario</label>
+                            <label><input type="radio" name="voyConAlguien" value="Solo" required onchange="toggleAcompanamiento('solo')"> Voy solo/a</label>
+                            <label><input type="radio" name="voyConAlguien" value="Acompañado" onchange="toggleAcompanamiento('acompañado')"> Voy acompañado/a</label>
                         </div>
                     </div>
 
-                    <!-- ✅ CAMPO SIEMPRE VISIBLE Y OBLIGATORIO -->
-                    <div id="bloque-acompanantes">
+                    <!-- CONTENEDOR DE PREGUNTAS DE ACOMPAÑANTE -->
+                    <div id="bloque-preguntas-acompanante" style="display: none;">
+                        <div class="form-group">
+                            <label>¿Vas a responder también en nombre de tu pareja o acompañante? *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="responde_por_dos" value="Sí"> Sí, respondo por los dos</label>
+                                <label><input type="radio" name="responde_por_dos" value="No"> No, mi acompañante rellenará su propio formulario</label>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="nombresAcompanantes">Nombre completo del acompañante *</label>
-                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos" required>
+                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos">
                         </div>
                     </div>
 
@@ -243,10 +261,24 @@
                 <p id="mensaje" style="text-align: center; margin-top: 15px; font-weight: bold; color: #2e7d32;"></p>
             </form>
         </section>
+
+        <!-- BOTONES DE ATAJO -->
+        <section class="section shortcuts-section">
+            <div class="shortcuts-container">
+                <a href="#lugar" class="button shortcut-button">
+                    📍 ¿Quieres saber el lugar?
+                </a>
+                <a href="#vestimenta" class="button shortcut-button">
+                    👗 ¿Sabes qué te vas a poner?
+                </a>
+            </div>
+        </section>
     </main>
 
+    <!-- IMAGEN INFERIOR -->
     <div class="imagen-inferior">
-        <img src="img/bodaAbajo.jpeg" alt="Inés y Jaime" style="width: 100%; display: block;">
+        <!-- ✅ Quitamos el style en línea para controlarlo desde el CSS -->
+        <img src="img/bodaAbajo.jpeg" alt="Inés y Jaime">
     </div>
 
     <footer>
@@ -291,9 +323,14 @@
             inputs.forEach(input => input.disabled = !mostrarDetalles);
         }
 
-        function toggleAcompanantes(val) {
-            // Como el bloque es siempre visible, esta función solo se mantiene por si 
-            // en el futuro quieres añadir lógica extra, pero no oculta nada.
+        function toggleAcompanamiento(val) {
+            const mostrar = val === 'acompañado';
+            configurarBloque('bloque-preguntas-acompanante', mostrar);
+            
+            if (!mostrar) {
+                document.querySelectorAll('input[name="responde_por_dos"]').forEach(radio => radio.checked = false);
+                document.getElementById('nombresAcompanantes').value = '';
+            }
         }
 
         function toggleHotel(val) {
