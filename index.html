@@ -6,7 +6,6 @@
     <title>Boda - Inés & Jaime</title>
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- ✅ SCRIPT PARA FORZAR EL INICIO AL RECARGAR -->
     <script>
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
@@ -33,7 +32,6 @@
             <p>Esperamos poder celebrar nuestra boda junto a las personas que más queremos.</p>
         </section>
 
-        <!-- SECCIÓN DEL MAPA -->
         <section id="lugar" class="section location-section">
             <h2>LUGAR</h2>
             <p>La ceremonia y la celebración tendrán lugar en:</p>
@@ -54,7 +52,6 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: VESTIMENTA Y TU LOOK (OUTFITKEY) -->
         <section id="vestimenta" class="section outfit-section">
             <h2>VESTIMENTA</h2>
             <p>¡Venid como queráis! No tenemos código de vestimenta, lo importante es que disfrutéis con nosotros.</p>
@@ -66,7 +63,6 @@
             </a>
         </section>
 
-        <!-- SECCIÓN DEL FORMULARIO -->
         <section id="confirmacion" class="section confirmation">
             <h2>CONFIRMACIÓN DE ASISTENCIA</h2>
             <p>Aunque todavía queda mucho para el gran día, necesitamos preparar algunas cosas con antelación, especialmente el alojamiento y el transporte.</p>
@@ -74,7 +70,7 @@
             <p>No hace falta que lo tengáis todo decidido. Contestad lo que ya sepáis y, si vuestros planes cambian, nos lo podéis comunicar sin problema.</p>
             <p style="font-weight: bold; margin-bottom: 40px;">¡Más adelante recibiréis vuestra invitación con todos los detalles!</p>
 
-            <form id="wedding-form">
+            <form id="wedding-form" novalidate>
                 
                 <!-- 1. DATOS BÁSICOS -->
                 <div class="form-group">
@@ -91,10 +87,8 @@
                     </div>
                 </div>
 
-                <!-- Contenedor que se oculta si no asiste -->
                 <div id="detalles-asistencia" style="display: none;">
                     
-                    <!-- NUEVA PREGUNTA: ¿Vas solo o acompañado? -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <label>¿Vas solo/a o acompañado/a? *</label>
                         <div class="radio-group">
@@ -103,23 +97,21 @@
                         </div>
                     </div>
 
-                    <!-- CONTENEDOR DE PREGUNTAS DE ACOMPAÑANTE -->
                     <div id="bloque-preguntas-acompanante" style="display: none;">
                         <div class="form-group">
                             <label>¿Vas a responder también en nombre de tu pareja o acompañante? *</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="responde_por_dos" value="Sí"> Sí, respondo por los dos</label>
+                                <label><input type="radio" name="responde_por_dos" value="Sí" required> Sí, respondo por los dos</label>
                                 <label><input type="radio" name="responde_por_dos" value="No"> No, mi acompañante rellenará su propio formulario</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="nombresAcompanantes">Nombre completo del acompañante *</label>
-                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos">
+                            <input type="text" id="nombresAcompanantes" name="nombresAcompanantes" placeholder="Nombre y apellidos" required>
                         </div>
                     </div>
 
-                    <!-- 2. ALOJAMIENTO -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>🏨 Alojamiento</h3>
                         <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Como en Caspe las opciones de alojamiento son limitadas, queremos ponéroslo fácil.<br><br>Nos encargaremos de gestionar las reservas para quienes necesitéis habitación. Cada uno abonará su propio alojamiento.<br><br>Por ahora, solo necesitamos saber vuestras preferencias para poder organizarnos con tiempo.</p>
@@ -145,7 +137,7 @@
                         <div class="form-group">
                             <label>¿Vas solo o acompañado? *</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="soloAcompanado" value="Solo" onchange="toggleCompaneroHotel('solo')"> Voy solo/a</label>
+                                <label><input type="radio" name="soloAcompanado" value="Solo" required onchange="toggleCompaneroHotel('solo')"> Voy solo/a</label>
                                 <label><input type="radio" name="soloAcompanado" value="Acompañado" onchange="toggleCompaneroHotel('acompañado')"> Voy acompañado/a</label>
                             </div>
                         </div>
@@ -153,12 +145,11 @@
                         <div id="bloque-companero-hotel" style="display: none;">
                             <div class="form-group">
                                 <label for="nombreCompaneroHotel">Nombre del acompañante (si compartes habitación) *</label>
-                                <input type="text" id="nombreCompaneroHotel" name="nombreCompaneroHotel">
+                                <input type="text" id="nombreCompaneroHotel" name="nombreCompaneroHotel" required>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. TRANSPORTE -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>🚌 Transporte</h3>
                         <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Estamos organizando un servicio de autobús entre Caspe y la finca para que no tengáis que preocuparos por el desplazamiento.<br><br>Por ahora, solo necesitamos saber si tenéis intención de utilizarlo para calcular las plazas necesarias. ¡Más adelante os daremos todos los detalles!</p>
@@ -174,18 +165,17 @@
                         <div class="form-group">
                             <label>¿Qué trayectos necesitas? *</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="trayectoBus" value="Solo Ida"> Solo Ida (Hacia la finca)</label>
+                                <label><input type="radio" name="trayectoBus" value="Solo Ida" required> Solo Ida (Hacia la finca)</label>
                                 <label><input type="radio" name="trayectoBus" value="Solo Vuelta"> Solo Vuelta (Desde la finca)</label>
                                 <label><input type="radio" name="trayectoBus" value="Ida y Vuelta"> Ida y Vuelta</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="plazasBus">Número de plazas necesarias *</label>
-                            <input type="number" id="plazasBus" name="plazasBus" min="1" placeholder="Ejemplo: 1">
+                            <input type="number" id="plazasBus" name="plazasBus" min="1" placeholder="Ejemplo: 1" required>
                         </div>
                     </div>
 
-                    <!-- 4. MENÚ -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>🍽️ Alergias e intolerancias</h3>
                         <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Queremos que todos disfrutéis de la comida sin preocupaciones.</p>
@@ -194,7 +184,6 @@
                         <textarea id="alergias" name="alergias" placeholder="Escribe aquí..." required></textarea>
                     </div>
 
-                    <!-- 5. NIÑOS -->
                     <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <h3>👶 Asistencia de Niños</h3>
                         <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">¡Los más pequeños también son bienvenidos! Queremos saber cuántos vendrán para tenerlo todo preparado.</p>
@@ -209,16 +198,16 @@
                     <div id="bloque-ninos" style="display: none;">
                         <div class="form-group">
                             <label for="cuantosNinos">¿Cuántos niños os acompañan? *</label>
-                            <input type="number" id="cuantosNinos" name="cuantosNinos" min="1" placeholder="Ejemplo: 2">
+                            <input type="number" id="cuantosNinos" name="cuantosNinos" min="1" placeholder="Ejemplo: 2" required>
                         </div>
                         <div class="form-group">
                             <label for="edadesNinos">Edad de cada uno de los niños (separados por comas) *</label>
-                            <input type="text" id="edadesNinos" name="edadesNinos" placeholder="Ejemplo: 3, 5, 8">
+                            <input type="text" id="edadesNinos" name="edadesNinos" placeholder="Ejemplo: 3, 5, 8" required>
                         </div>
                         <div class="form-group">
                             <label>¿Se quedarán al banquete? *</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="ninosBanquete" value="Sí" onchange="toggleMesaNinos('si')"> Sí</label>
+                                <label><input type="radio" name="ninosBanquete" value="Sí" required onchange="toggleMesaNinos('si')"> Sí</label>
                                 <label><input type="radio" name="ninosBanquete" value="No" onchange="toggleMesaNinos('no')"> No</label>
                                 <label><input type="radio" name="ninosBanquete" value="Todavía no lo sabemos" onchange="toggleMesaNinos('no_se')"> Todavía no lo sabemos</label>
                             </div>
@@ -228,7 +217,7 @@
                             <div class="form-group">
                                 <label>¿Dónde preferís que se sienten los niños durante el banquete? *</label>
                                 <div class="radio-group">
-                                    <label><input type="radio" name="mesaNinos" value="Mesa con adultos"> En nuestra mesa (con adultos)</label>
+                                    <label><input type="radio" name="mesaNinos" value="Mesa con adultos" required> En nuestra mesa (con adultos)</label>
                                     <label>
                                         <input type="radio" name="mesaNinos" value="Mesa infantil"> 
                                         <span style="display: flex; flex-direction: column;">
@@ -250,7 +239,6 @@
                     <textarea id="comentarios" name="comentarios" placeholder="Cualquier cosa que quieras comunicarnos"></textarea>
                 </div>
 
-                <!-- 6. CANCIÓN FAVORITA -->
                 <div class="form-group" style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
                     <h3>🎵 Música</h3>
                     <label for="cancionFavorita">¿Qué canción no puede faltar? (opcional)</label>
@@ -262,22 +250,15 @@
             </form>
         </section>
 
-        <!-- BOTONES DE ATAJO -->
         <section class="section shortcuts-section">
             <div class="shortcuts-container">
-                <a href="#lugar" class="button shortcut-button">
-                    📍 ¿Quieres saber el lugar?
-                </a>
-                <a href="#vestimenta" class="button shortcut-button">
-                    👗 ¿Sabes qué te vas a poner?
-                </a>
+                <a href="#lugar" class="button shortcut-button">📍 ¿Quieres saber el lugar?</a>
+                <a href="#vestimenta" class="button shortcut-button">👗 ¿Sabes qué te vas a poner?</a>
             </div>
         </section>
     </main>
 
-    <!-- IMAGEN INFERIOR -->
     <div class="imagen-inferior">
-        <!-- ✅ Quitamos el style en línea para controlarlo desde el CSS -->
         <img src="img/bodaAbajo.jpeg" alt="Inés y Jaime">
     </div>
 
@@ -285,112 +266,34 @@
         <p>Inés ❤️ Jaime · 2027</p>
     </footer>
 
-    <!-- Lógica de mostrar/ocultar y activar/desactivar required -->
+    <script src="js/script.js"></script>
+
+    <!-- ✅ NUEVO SCRIPT PARA EL SCROLL CENTRADO DE LOS BOTONES DE ATAJO -->
     <script>
-        function configurarBloque(id, mostrar) {
-            const contenedor = document.getElementById(id);
-            if (!contenedor) return;
-            
-            contenedor.style.display = mostrar ? 'block' : 'none';
-            
-            const inputs = contenedor.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.disabled = !mostrar;
+        document.querySelectorAll('.shortcut-button').forEach(boton => {
+            boton.addEventListener('click', function(e) {
+                e.preventDefault(); // Evitamos el salto brusco por defecto
                 
-                if (input.type === 'checkbox') {
-                    if (mostrar) {
-                        if (input.name === 'nochesHotel[]' && input.value === 'Viernes') {
-                            input.required = true;
-                        }
-                    } else {
-                        input.required = false;
-                    }
-                } else {
-                    input.required = mostrar;
+                // Obtenemos el ID del destino (quitando el '#')
+                const idDestino = this.getAttribute('href').substring(1);
+                const seccionDestino = document.getElementById(idDestino);
+                
+                if (seccionDestino) {
+                    // Calculamos la posición para centrarlo verticalmente
+                    const rect = seccionDestino.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const alturaPantalla = window.innerHeight;
+                    
+                    // Para centrarlo, restamos la mitad de la pantalla y sumamos la mitad de la altura del elemento
+                    const offset = rect.top + scrollTop - (alturaPantalla / 2) + (rect.height / 2);
+                    
+                    window.scrollTo({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
                 }
             });
-        }
-
-        function toggleAsistencia() {
-            const seleccion = document.querySelector('input[name="asistencia"]:checked').value;
-            const panel = document.getElementById('detalles-asistencia');
-            
-            const mostrarDetalles = (seleccion === 'Sí');
-            
-            panel.style.display = mostrarDetalles ? 'block' : 'none';
-            
-            const inputs = panel.querySelectorAll('input, textarea');
-            inputs.forEach(input => input.disabled = !mostrarDetalles);
-        }
-
-        function toggleAcompanamiento(val) {
-            const mostrar = val === 'acompañado';
-            configurarBloque('bloque-preguntas-acompanante', mostrar);
-            
-            if (!mostrar) {
-                document.querySelectorAll('input[name="responde_por_dos"]').forEach(radio => radio.checked = false);
-                document.getElementById('nombresAcompanantes').value = '';
-            }
-        }
-
-        function toggleHotel(val) {
-            configurarBloque('bloque-hotel', val === 'si');
-        }
-
-        function toggleCompaneroHotel(val) {
-            configurarBloque('bloque-companero-hotel', val === 'acompañado');
-        }
-
-        function toggleBus(val) {
-            configurarBloque('bloque-bus', val === 'si');
-        }
-
-        function toggleNinos(val) {
-            configurarBloque('bloque-ninos', val === 'si');
-        }
-
-        function toggleMesaNinos(val) {
-            configurarBloque('bloque-mesa-ninos', val === 'si');
-        }
-
-        // Validación extra en el envío
-        document.getElementById('wedding-form').addEventListener('submit', function(e) {
-            const hotelMarcado = document.querySelector('input[name="necesitaHotel"]:checked');
-            if (hotelMarcado && hotelMarcado.value === 'Sí') {
-                const checkboxes = document.querySelectorAll('input[name="nochesHotel[]"]:checked');
-                if (checkboxes.length === 0) {
-                    e.preventDefault();
-                    document.getElementById('error-noches').style.display = 'block';
-                    document.getElementById('bloque-hotel').scrollIntoView({ behavior: 'smooth' });
-                    return;
-                } else {
-                    document.getElementById('error-noches').style.display = 'none';
-                }
-            }
-
-            const busMarcado = document.querySelector('input[name="usaAutobus"]:checked');
-            if (busMarcado && busMarcado.value === 'Sí') {
-                const plazas = document.getElementById('plazasBus').value;
-                if (!plazas || plazas < 1) {
-                    e.preventDefault();
-                    alert('Por favor, indica el número de plazas de autobús que necesitas.');
-                    document.getElementById('plazasBus').focus();
-                    return;
-                }
-            }
-
-            const ninosMarcado = document.querySelector('input[name="vienenNinos"]:checked');
-            if (ninosMarcado && ninosMarcado.value === 'Sí') {
-                const cuantos = document.getElementById('cuantosNinos').value;
-                if (!cuantos || cuantos < 1) {
-                    e.preventDefault();
-                    alert('Por favor, indica cuántos niños os acompañan.');
-                    document.getElementById('cuantosNinos').focus();
-                    return;
-                }
-            }
         });
     </script>
-    <script src="js/script.js"></script>
 </body>
 </html>
