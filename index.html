@@ -21,17 +21,19 @@
         <div class="hero-content">
             <h1>INÉS ❤️ JAIME</h1>
             <p class="date">SÁBADO, 11 DE SEPTIEMBRE DE 2027</p>
-            <a href="#confirmacion" class="button">Confirmar asistencia</a>
+            <!-- ✅ Botón de confirmar asistencia eliminado -->
         </div>
     </header>
 
     <main>
+        <!-- SECCIÓN NOS CASAMOS -->
         <section class="section" style="padding-bottom: 0;">
             <h2>NOS CASAMOS</h2>
             <p>Estamos muy felices de compartir este día tan especial con vosotros.</p>
             <p>Esperamos poder celebrar nuestra boda junto a las personas que más queremos.</p>
         </section>
 
+        <!-- SECCIÓN DEL MAPA -->
         <section id="lugar" class="section location-section">
             <h2>LUGAR</h2>
             <p>La ceremonia y la celebración tendrán lugar en:</p>
@@ -52,6 +54,7 @@
             </div>
         </section>
 
+        <!-- SECCIÓN VESTIMENTA -->
         <section id="vestimenta" class="section outfit-section">
             <h2>VESTIMENTA</h2>
             <p>¡Venid como queráis! No tenemos código de vestimenta, lo importante es que disfrutéis con nosotros.</p>
@@ -63,6 +66,7 @@
             </a>
         </section>
 
+        <!-- SECCIÓN DEL FORMULARIO -->
         <section id="confirmacion" class="section confirmation">
             <h2>CONFIRMACIÓN DE ASISTENCIA</h2>
             <p>Aunque todavía queda mucho para el gran día, necesitamos preparar algunas cosas con antelación, especialmente el alojamiento y el transporte.</p>
@@ -268,23 +272,20 @@
 
     <script src="js/script.js"></script>
 
-    <!-- ✅ NUEVO SCRIPT PARA EL SCROLL CENTRADO DE LOS BOTONES DE ATAJO -->
+    <!-- ✅ SCRIPT PARA EL SCROLL CENTRADO DE LOS BOTONES DE ATAJO -->
     <script>
         document.querySelectorAll('.shortcut-button').forEach(boton => {
             boton.addEventListener('click', function(e) {
-                e.preventDefault(); // Evitamos el salto brusco por defecto
+                e.preventDefault(); 
                 
-                // Obtenemos el ID del destino (quitando el '#')
                 const idDestino = this.getAttribute('href').substring(1);
                 const seccionDestino = document.getElementById(idDestino);
                 
                 if (seccionDestino) {
-                    // Calculamos la posición para centrarlo verticalmente
                     const rect = seccionDestino.getBoundingClientRect();
                     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                     const alturaPantalla = window.innerHeight;
                     
-                    // Para centrarlo, restamos la mitad de la pantalla y sumamos la mitad de la altura del elemento
                     const offset = rect.top + scrollTop - (alturaPantalla / 2) + (rect.height / 2);
                     
                     window.scrollTo({
